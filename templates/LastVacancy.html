@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP</title>
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+</head>
+<body>
+{% for nav in navigation %}
+<header>
+     <h1>{{ nav.title|safe }}</h1>
+     <a href="/"><img src="{{nav.logo_field.url}}" alt=""></a>
+</header>
+<main>
+            <nav>
+                <ul>
+                    <li><a href="/">{{ nav.first_menu }}</a></li>
+                    <li><a href={% url 'demend' %}>{{ nav.second_menu }}</a></li>
+                    <li><a href={% url 'geography' %}>{{ nav.thierd_menu }}</a></li>
+                    <li><a href={% url 'skills' %}>{{ nav.fourth_menu }}</a></li>
+                    <li><a href={% url 'lastVacancy' %}>{{ nav.fifth_menu|safe }}</a></li>
+                </ul>
+
+            </nav>
+    {% endfor %}
+        <div class="home_text">
+            <h1>{{lv.title}}</h1>
+            <div class="empty_skills"></div>
+        </div>
+        <div class="LVtable">
+            {% for i in vacs %}
+            <h3>{{ i.name }}</h3>
+            <p>Описание: {{ i.description }}</p>
+            <p>Навыки: {{ i.key_skills }}</p>
+            <p>Компания: {{ i.employer }}</p>
+            <p>Зарплата: {{ i.salary }}</p>
+            <p>Город: {{ i.area }}</p>
+            <p>Дата публикации: {{ i.published_at }}</p>
+            <p>Ссылка: {{ i.alternate_url }}</p>
+        {% endfor %}
+        </div>
+    </div>
+</main>
+  {% for navigator in navigation %}
+
+<footer style="margin-top: 1800px">
+    <span>{{ navigator.author|safe }}</span>
+
+</footer>
+{% endfor %}
+
+</body>
+</html>

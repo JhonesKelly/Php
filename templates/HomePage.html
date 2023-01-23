@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP</title>
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+</head>
+<body>
+{% for nav in navigation %}
+<header>
+     <h1>{{ nav.title|safe }}</h1>
+     <a href="/"><img src="{{nav.logo_field.url}}" alt=""></a>
+</header>
+<main>
+            <nav>
+                <ul>
+                    <li><a href="/">{{ nav.first_menu }}</a></li>
+                    <li><a href={% url 'demend' %}>{{ nav.second_menu }}</a></li>
+                    <li><a href={% url 'geography' %}>{{ nav.thierd_menu }}</a></li>
+                    <li><a href={% url 'skills' %}>{{ nav.fourth_menu }}</a></li>
+                    <li><a href={% url 'lastVacancy' %}>{{ nav.fifth_menu|safe }}</a></li>
+                </ul>
+
+            </nav>
+    {% endfor %}
+       {% for main in home_info %}
+        <div>
+            {{ main.text|safe }}
+            <div class="empty"></div>
+            <img id="img_proff" src="{{ main.photo.url }}"/>
+        </div>
+    </div>
+ {% endfor %}
+</main>
+  {% for navigator in navigation %}
+
+<footer>
+    <span>{{ navigator.author|safe }}</span>
+
+</footer>
+{% endfor %}
+
+</body>
+</html>
